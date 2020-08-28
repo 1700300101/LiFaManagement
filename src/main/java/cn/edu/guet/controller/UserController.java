@@ -36,10 +36,10 @@ public class UserController {
      */
     @RequestMapping(value = "login",method = {RequestMethod.POST})
     @ResponseBody
-    public Result login(String username,String password){
-        System.out.println("username: "+username);
-        System.out.println("password: "+password);
-        User user=userService.login(username,password);
+    public Result login(@RequestBody UserDto userDto){
+        System.out.println("username: "+userDto.getUsername());
+        System.out.println("password: "+userDto.getPassword());
+        User user=userService.login(userDto.getUsername(),userDto.getPassword());
         if(user!=null){
             return Result.succ(user);
         }else{
